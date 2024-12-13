@@ -1,0 +1,294 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #6c63ff; /* Un gris oscuro elegante */
+    color: #f7f7f7; /* Texto claro para contraste */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    margin: 20px 0;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    font-size: 2.5rem;
+}
+
+#gameSettings {
+    margin: 10px auto 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+#gameSettings label {
+    font-size: 1.2rem;
+}
+
+#gameSettings select {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #444;
+    color: #f7f7f7;
+    outline: none;
+}
+
+#timer {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    border: 2px solid #ffd700;  /* Añadí un borde dorado */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#wordSearchContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); /* Cambié a auto-fill para adaptarse mejor */
+    gap: 5px;
+    max-width: 600px;
+    margin: 0 auto 20px;
+    padding: 10px;
+    background-color: #444;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#wordSearchContainer div {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eeeeee;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#wordSearchContainer div:hover {
+    transform: scale(1.1);
+    background-color: #dcdcdc;
+}
+
+#wordSearchContainer div.selected {
+    background-color: #add8e6;
+    color: #ffffff;
+}
+
+#wordSearchContainer div.found {
+    background-color: #90ee90;
+    color: #ffffff;
+}
+
+.wordsList {
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: #f7f7f7;
+}
+
+.wordsList div {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #555;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.wordsList div:hover {
+    background-color: #666;
+}
+
+.wordsList div.found {
+    background-color: #90ee90;
+    color: #ffffff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wordsList div.found::after {
+    content: ' ✔️';
+    color: #ffffff;
+    font-size: 1.2rem;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);  /* Efecto de zoom al pasar el cursor */
+}
+/* Estilo del Modal de configuración de temática */
+#settingsModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro translúcido */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque en el fondo */
+    z-index: 1000;
+}
+
+#settingsModal .modal-content {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 30px 40px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    transform: scale(0.9);
+    animation: zoomIn 0.3s ease forwards;
+}
+
+#settingsModal h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#settingsModal label {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+#settingsModal select {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 2px solid #6c63ff;
+    background-color: #f7f7f7;
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#settingsModal select:hover {
+    background-color: #e6e6e6;
+}
+
+#settingsModal button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #6c63ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#settingsModal button:hover {
+    background-color: #5753d9;
+    transform: translateY(-3px);
+}
+
+/* Animación de entrada suave */
+@keyframes zoomIn {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Estilo del Modal de victoria */
+#winModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+#winModal .modal-content {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 30px 40px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    transform: scale(0.9);
+    animation: zoomIn 0.3s ease forwards;
+}
+
+#winModal h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#winModal p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+#winModal button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #6c63ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#winModal button:hover {
+    background-color: #5753d9;
+    transform: translateY(-3px);
+}
